@@ -10,8 +10,10 @@
   backface-visibility: hidden;
   transform: translateZ(0);
   transition: transform 0.25s ease-out;
+  font-family: 'Bigelow Rules';
 }
 
 .card-container:hover {
   transform: scale(1.05);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
