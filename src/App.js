@@ -1,4 +1,7 @@
 import { Component } from 'react';
+
+import CardList from './components/card-list/card-list.component';
+import SearchBox from './components/search-box/search-box.component';
 import './App.css';
 
 // Using class components
@@ -26,60 +29,33 @@ class App extends Component {
       ));
   }
 
-
+  onSearchChange = (event) => {
+    const searchText = event.target.value.toLowerCase();
+    this.setState(() => {
+      return { searchText };
+    }
+    );
+  };
 
   render() {
+    const { monsters, searchText } = this.state;
+    const { onSearchChange } = this;
 
-    console.log("Render funvtion of App.js file is executing...");
-
-    const filteredMonsters = this.state.monsters.filter((monster) => {
-      return monster.name.toLowerCase().includes(this.state.searchText);
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLowerCase().includes(searchText);
     });
 
     return (
       <div className="App">
-        <input className='search-box' type='search' placeholder='Search Monsters'
-          onChange={
-            (event) => {
-              const searchText = event.target.value.toLowerCase();
-              this.setState(() => {
-                return { searchText };
-              }
-              );
-            }
-          }
+        <SearchBox
+          className="search-box"
+          placeholder="Search Monsters"
+          onSearchChange={onSearchChange}
         />
-        {
-          filteredMonsters.map((monster) => {
-            return <h2 key={monster.id}> {monster.name} </h2>
-          })
-        }
-      </div>
+        <CardList monsters={filteredMonsters} />
+      </div >
     );
   }
 };
-
-// Using functional components
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 export default App;
