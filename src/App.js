@@ -23,9 +23,7 @@ class App extends Component {
         () => {
           return { monsters: users };
         },
-        () => {
-          console.log(this.state);
-        }
+        () => { }
       ));
   }
 
@@ -52,6 +50,7 @@ class App extends Component {
           placeholder="Search Monsters"
           onSearchChange={onSearchChange}
         />
+        <p></p>
         <CardList monsters={filteredMonsters} />
       </div >
     );
